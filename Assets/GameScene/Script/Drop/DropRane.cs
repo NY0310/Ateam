@@ -6,20 +6,12 @@ public class DropRane : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-
-
-    /// <summary>
-    /// ドロップをレーンで管理
-    /// </summary>
-        public GameObject drop;
 
         [SerializeField]
         public Vector2 TargetPosition;
@@ -31,21 +23,51 @@ public class DropRane : MonoBehaviour {
         //列に入るドロップの最大値
         public int MAX_DROP = 4;
 
+
+    public GameObject CircleDropPrefab;
+    public GameObject CrossDropPrefab;
+    public GameObject TryangleDropPrefab;
+
+    public GameObject Init(Drop.DROPTYPE droptype)
+    {
+        GameObject DropPrefab;
+        switch (droptype)
+        {
+            case Drop.DROPTYPE.DROP1:
+                DropPrefab = Instantiate(CircleDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            case Drop.DROPTYPE.DROP2:
+                DropPrefab = Instantiate(CrossDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            case Drop.DROPTYPE.DROP3:
+                DropPrefab = Instantiate(TryangleDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            default:
+                return null;
+        }
+    }
+
+
+
         public void Init(LANEKIND lanekind)
         {
+            Vector2 Pos = TargetPosition;
+             Pos.x += (float)lanekind * INTERVAL_SIZE.x;
             for (int i = 0; i < MAX_DROP; i++)
             {
                 GameObject inst = Create();
-                TargetPosition.x += INTERVAL_SIZE.x;
-                TargetPosition.y += INTERVAL_SIZE.y;
-                inst.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+               
+                Pos.y += INTERVAL_SIZE.y;
+                inst.transform.position = new Vector3(Pos.x, Pos.y, transform.position.z);
 
             }
         }
 
-        List<GameObject> DropList;
-
-
+        List<GameObject> DropList = new List<GameObject>();
+   
         /// <summary>
         /// ドロップを生成
         /// </summary>
@@ -53,7 +75,7 @@ public class DropRane : MonoBehaviour {
         public GameObject Create()
         {
             GameObject inst;
-            inst = Drop.Init((Drop.DROPTYPE)Random.Range((float)Drop.DROPTYPE.DROP1, (float)Drop.DROPTYPE.DROP3 + 1));
+            inst = Init((Drop.DROPTYPE)Random.Range((float)Drop.DROPTYPE.DROP1, (float)Drop.DROPTYPE.DROP3 + 1));
             DropList.Add(inst);
             return inst;
         }
@@ -75,6 +97,7 @@ public class DropRane : MonoBehaviour {
         /// <returns>成功か失敗か</returns>
         public bool TargetDelete(Drop.DROPTYPE droptype)
         {
+        Debug.Log(DropList[(int)LANENUMBER.FIRST].GetComponent<Drop>()._DropType);
             if (DropList[(int)LANENUMBER.FIRST].GetComponent<Drop>()._DropType == droptype)
             {
                 TargetDelete();

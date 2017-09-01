@@ -18,7 +18,7 @@ public  class Drop : MonoBehaviour {
         MAX
     }
 
-    static DROPTYPE DropType = DROPTYPE.DROP1;
+    DROPTYPE DropType;
 
     public DROPTYPE _DropType
     {
@@ -34,28 +34,7 @@ public  class Drop : MonoBehaviour {
     //public Material cross_material;
     //[SerializeField]
     //public Material tryangle_material;
- 
-    public static GameObject Init(DROPTYPE droptype)
-    {
-        //属性を登録
-        DropType = droptype;
-        GameObject CircleDropPrefab = (GameObject)Resources.Load("Drop1");
-        GameObject CrossDropPrefab = (GameObject)Resources.Load("Drop2");
-        GameObject TryangleDropPrefab = (GameObject)Resources.Load("Drop3");
-
-        switch (droptype)
-        {
-            case DROPTYPE.DROP1:
-                return Instantiate(CircleDropPrefab);
-            case DROPTYPE.DROP2:
-                return Instantiate(CrossDropPrefab);
-            case DROPTYPE.DROP3:
-                return Instantiate(TryangleDropPrefab);
-            default:
-                return null;
-        }
-    }
-
+  
 
   
 }

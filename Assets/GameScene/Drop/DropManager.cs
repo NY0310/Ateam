@@ -108,27 +108,33 @@ public class DropManager : MonoBehaviour {
      /// <returns>全削除したかどうか</returns>
      public bool IfNeeded()
      {
-         Drop.DROPTYPE droptype = Drop.DROPTYPE.MAX;
-         Drop.DROPTYPE _droptype;
+         Drop.DROPTYPE droptype = DropRaneList[(int)DropRane.LANEKIND.LANE1].GetComponent<DropRane>()._TargetDrop;
+        Drop.DROPTYPE _droptype;
          for (int i = 0; i < MAX_RANE; i++)
          {
              _droptype = DropRaneList[i].GetComponent<DropRane>()._TargetDrop;
-         ;
-         if (droptype != _droptype)
+
+
+             if (droptype != _droptype)
              {
                  break;
              }
-
-             //全て同じドロップなら
-             if (i == MAX_RANE - 1)
-             {
-                 //全てのターゲットドロップ削除
-                 for (int j = 0; j < MAX_RANE; j++)
+            else
+            {
+                 //全て同じドロップなら
+                 if (i == MAX_RANE - 1)
                  {
-                 DropRaneList[i].GetComponent<DropRane>().Create();
-             }
-             return true;
-             }
+                     //全てのターゲットドロップ削除
+                     for (int j = 0; j < MAX_RANE; j++)
+                     {
+                        DropRaneList[j].GetComponent<DropRane>().TargetDelete();
+                     }
+                     return true;
+                 }
+
+            }
+             droptype = _droptype;
+
          }
 
          return false;

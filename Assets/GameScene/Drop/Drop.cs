@@ -12,9 +12,9 @@ public  class Drop : MonoBehaviour {
     //ドロップ種類
     public enum DROPTYPE
     {
-        DROP1,
-        DROP2,
-        DROP3,
+        Circle,
+        Cross,
+        Tryangle,
         MAX
     }
 

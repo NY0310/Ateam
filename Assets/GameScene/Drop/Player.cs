@@ -6,36 +6,50 @@ public class Player : MonoBehaviour
 {
     public DropManager dropmanager;
 
-    Drop.DROPTYPE droptype = Drop.DROPTYPE.DROP1;
+    Drop.DROPTYPE DropType;
 
-    GameObject PlayerPrefab;
+    public Drop.DROPTYPE _DropType
+    {
+        get { return DropType; }
+        set { DropType = value; }
+    }
+
+
+    //GameObject PlayerPrefab;
 
     int SkillPoint = 0;
 
     GameObject DropManager;
-  
+
+    //体力
+    int HP;
+    //攻撃力
+    int Power;
+
     /// <summary>
     /// 攻撃(ターゲットドロップの中に)
     /// </summary>
-    public void Attack()
+    protected void Attack()
     {
-        DropManager = GameObject.Find("DropManager");
-        DropManager.GetComponent<DropManager>().TargetDelete(droptype);
+        DropManager.GetComponent<DropManager>().TargetDelete(DropType);
     }   
 
     // Use this for initialization
     void Start () {
+        DropManager = GameObject.Find("DropManager");
+
         ////プレハブ作成
         //PlayerPrefab = (GameObject)Resources.Load("Player");
         //PlayerPrefab = Instantiate(PlayerPrefab);
     }
-	
-	// Update is called once per frame
-	void Update () {
-        //if (GetComponent<DropManager>().IfNeeded())
-        //{
-        //    SkillPoint++;
-        //}
+
+    // Update is called once per frame
+    void Update () {
+
+        if (DropManager.GetComponent<DropManager>().IfNeeded())
+        {
+            SkillPoint++;
+        }
 
         if (Collision())
         {
@@ -48,7 +62,7 @@ public class Player : MonoBehaviour
     /// タッチされたかどうか
     /// </summary>
     /// <returns></returns>
-    bool Collision()
+    protected bool Collision()
     {
         ////タッチ情報取得
         //if (Input.touchCount > 0)
@@ -63,7 +77,6 @@ public class Player : MonoBehaviour
         //            return true;
         //        }
         //    }
-
         //}
         float size = 1.0f;
         //タッチ情報取得
@@ -87,3 +100,33 @@ public class Player : MonoBehaviour
         return false;
     }
 }
+
+
+//public class CirclePlayer : Player
+//{
+//    // Use this for initialization
+//    void Start()
+//    {
+//        droptype = Drop.DROPTYPE.Circle;
+//    }
+
+//}
+
+//public class CrossPlayer : Player
+//{
+//    // Use this for initialization
+//    void Start()
+//    {
+//        droptype = Drop.DROPTYPE.Cross;
+//    }
+//}
+
+
+//public class TryanglePlayer : Player
+//{
+//    // Use this for initialization
+//    void Start()
+//    {
+//        droptype = Drop.DROPTYPE.Tryangle;
+//    }
+//}

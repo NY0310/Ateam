@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 579, y: 471}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
-  controlID: 45
+  controlID: 83
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 579, y: 200}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
-  controlID: 46
+  controlID: 44
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,9 +201,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 759
+    x: 825
     y: 0
-    width: 521
+    width: 455
     height: 316
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
@@ -229,7 +229,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 371
     y: 0
-    width: 388
+    width: 454
     height: 316
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
@@ -289,9 +289,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 536
+    x: 373
     y: 92
-    width: 221
+    width: 450
     height: 295
   m_SceneLighting: 1
   lastFramingTime: 4339.99010944
@@ -335,7 +335,7 @@ MonoBehaviour:
     m_Target: 1
     speed: 2
     m_Value: 1
-  m_LastSceneViewRotation: {x: 0.08717229, y: -0.89959055, z: 0.21045254, w: 0.3726226}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -378,30 +378,30 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/GameScene/Script/Drop
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/GameScene/Script/Drop
+  - Assets/Resources
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\s162133\Documents\Unity\Ateam
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 16250000
-    m_LastClickedID: 9494
-    m_ExpandedIDs: 00000000be2400003a2500004025000000ca9a3bffffff7f
+    m_SelectedIDs: 26250000
+    m_LastClickedID: 9510
+    m_ExpandedIDs: 00000000be2400003a250000402500001645000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Resources
-      m_OriginalName: Resources
+      m_Name: Script
+      m_OriginalName: Script
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 9510
+      m_UserData: 9530
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -449,15 +449,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: f01d0000e81d0000e61d00005a1d00007cea0000b4320000aa3200002a2a0000b4220000501d0000324500003cadfbff08250000ba380000a42500006063000036b8fcffc666fdff3c470000502e000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Drop
-      m_OriginalName: Drop
+      m_Name: Player
+      m_OriginalName: Player
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 9494
+      m_UserData: 1606
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -495,10 +495,10 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 272
+    x: 373
     y: 92
-    width: 633
-    height: 234
+    width: 384
+    height: 295
   m_ViewPositions:
     m_KeySerializationHelper: []
     m_ValueSerializationHelper: []
@@ -569,7 +569,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 373
     y: 92
-    width: 384
+    width: 450
     height: 295
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -599,25 +599,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-      width: 384
+      width: 450
       height: 278
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 192, y: 139}
+    m_Translation: {x: 225, y: 139}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -192
+      x: -225
       y: -139
-      width: 384
+      width: 450
       height: 278
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 384, y: 295}
+  m_LastWindowPixelSize: {x: 450, y: 295}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -767,23 +767,23 @@ MonoBehaviour:
     height: 295
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 06250000
+    m_SelectedIDs: 4830fdff
     m_LastClickedID: 0
-    m_ExpandedIDs: e6fbffff00000000
+    m_ExpandedIDs: ba66fdff686efdffc442feffe6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: TryanglePlayer
+      m_OriginalName: TryanglePlayer
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -171030
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -814,11 +814,11 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 761
+    x: 827
     y: 92
-    width: 519
+    width: 453
     height: 295
-  m_ScrollPosition: {x: 0, y: 41.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -100

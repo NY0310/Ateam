@@ -25,13 +25,18 @@ public class Player : MonoBehaviour
     int HP;
     //攻撃力
     int Power;
+    //
+    GameObject ButtlegameObject;
 
     /// <summary>
     /// 攻撃(ターゲットドロップの中に)
     /// </summary>
     protected void Attack()
     {
-        DropManager.GetComponent<DropManager>().TargetDelete(DropType);
+        if (DropManager.GetComponent<DropManager>().TargetDelete(DropType) > 1)
+        {
+
+        } 
     }   
 
     // Use this for initialization
@@ -46,15 +51,24 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update () {
 
-        if (DropManager.GetComponent<DropManager>().IfNeeded())
+       
+
+        //タッチ不可にする
+        ButtlegameObject = GameObject.Find("FightManager");
+        if (ButtlegameObject.GetComponent<FightManager>()._IsTouch == true)
         {
-            SkillPoint++;
+            if (Collision())
+            {
+                Attack();
+            }
+            if (DropManager.GetComponent<DropManager>().IfNeeded())
+            {
+                SkillPoint++;
+            }
+
         }
 
-        if (Collision())
-        {
-            Attack();
-        }
+     
     }
 
 

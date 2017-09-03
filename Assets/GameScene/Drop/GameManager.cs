@@ -2,7 +2,8 @@
 //using System.Collections.Generic;
 //using UnityEngine;
 
-//public class ButtleManager : MonoBehaviour {
+//public class FightManager : MonoBehaviour
+//{
 
 //    //制限時間
 //    public int TimeLimit;
@@ -11,20 +12,23 @@
 //    //スキルスタック
 //    //List<>
 //    //
+//    //タッチ可能か
+//    public bool IsTouxh = true;
+//    // Use this for initialization
+//    void Start()
+//    {
 
-//	// Use this for initialization
-//	void Start () {
-		
-//	}
-	
-//	// Update is called once per frame
-//	void Update () {
-		
-//	}
+//    }
+
+//    // Update is called once per frame
+//    void Update()
+//    {
+
+//    }
 
 //    //バトル作成//
 //    //ドロップ作成
 //    //プレイヤ作成
 //    //敵作成
-    
+
 //}

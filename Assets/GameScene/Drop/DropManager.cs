@@ -29,15 +29,18 @@ public class DropManager : MonoBehaviour {
 
     public GameObject DropRanePrefab;
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
      public void Init()
      {
-        //前回のドロップ種類
-        Drop.DROPTYPE OldDropType = Drop.DROPTYPE.Circle; 
 
         
          for (int i = 0; i < MAX_RANE; i++)
          {
-            Drop.DROPTYPE DropType = Drop.DROPTYPE.Tryangle;
+            //前回のドロップ種類
+            Drop.DROPTYPE OldDropType = Drop.DROPTYPE.MAX; 
+            Drop.DROPTYPE DropType = Drop.DROPTYPE.MAX;
             while (OldDropType == DropType)
             {
               DropType = ((Drop.DROPTYPE)Random.Range((float)Drop.DROPTYPE.Circle, (float)Drop.DROPTYPE.Tryangle + 1));
@@ -47,7 +50,6 @@ public class DropManager : MonoBehaviour {
               inst = Instantiate(DropRanePrefab);
               DropRaneList.Add(inst);
               DropRaneList[i].GetComponent<DropRane>().Init((DropRane.LANEKIND)i, DropType);
-              //droprane[i].Init((DropRane.LANEKIND)i);
               OldDropType = DropType;
 
          }
@@ -101,16 +103,16 @@ public class DropManager : MonoBehaviour {
 
      }
 
-     /// <summary>
-     /// 全てのレーンのドロップを一段落とす
-     /// </summary>
-     public void AllDropDown()
-     {
-         for (int i = 0; i < MAX_RANE; i++)
-         {
-               DropRaneList[i].GetComponent<DropRane>().AllDropDown();
-         }
-     }
+     ///// <summary>
+     ///// 全てのレーンのドロップを一段落とす
+     ///// </summary>
+     //public void AllDropDown()
+     //{
+     //    for (int i = 0; i < MAX_RANE; i++)
+     //    {
+     //          DropRaneList[i].GetComponent<DropRane>().AllDropDown();
+     //    }
+     //}
 
      /// <summary>
      /// 全てのレーンのターゲットドロップが同じ種類なら全削除する
@@ -149,43 +151,5 @@ public class DropManager : MonoBehaviour {
 
          return false;
      }
-
-    ///// <summary>
-    ///// 全てのレーンのターゲットドロップが同じ種類なら全削除する
-    ///// </summary>
-    ///// <returns>全削除したかどうか</returns>
-    //public bool NextIfNeeded(DropRane.LANEKIND lanekind)
-    //{
-    //    Drop.DROPTYPE droptype = DropRaneList[(int)DropRane.LANEKIND.LANE1].GetComponent<DropRane>()._TargetDrop;
-    //    Drop.DROPTYPE _droptype;
-    //    for (int i = 0; i < MAX_RANE; i++)
-    //    {
-    //        _droptype = DropRaneList[(int)lanekind].GetComponent<DropRane>()._NextTargetDrop;
-            
-
-    //        if (droptype != _droptype)
-    //        {
-    //            break;
-    //        }
-    //        else
-    //        {
-    //            //全て同じドロップなら
-    //            if (i == MAX_RANE - 1)
-    //            {
-    //                //全てのターゲットドロップ削除
-    //                for (int j = 0; j < MAX_RANE; j++)
-    //                {
-    //                    DropRaneList[j].GetComponent<DropRane>().TargetDelete();
-    //                }
-    //                return true;
-    //            }
-
-    //        }
-    //        droptype = _droptype;
-
-    //    }
-
-    //    return false;
-    //}
 
 }

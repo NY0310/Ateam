@@ -2,31 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    public DropManager dropmanager;
+  
 
-    Drop.DROPTYPE DropType;
-
-    public Drop.DROPTYPE _DropType
-    {
-        get { return DropType; }
-        set { DropType = value; }
-    }
-
-
-    //GameObject PlayerPrefab;
+    
 
     int SkillPoint = 0;
 
     GameObject DropManager;
-
-    //体力
-    int HP;
-    //攻撃力
-    int Power;
     //
     GameObject ButtlegameObject;
+
+
+
+
 
     /// <summary>
     /// 攻撃(ターゲットドロップの中に)
@@ -42,10 +32,6 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start () {
         DropManager = GameObject.Find("DropManager");
-
-        ////プレハブ作成
-        //PlayerPrefab = (GameObject)Resources.Load("Player");
-        //PlayerPrefab = Instantiate(PlayerPrefab);
     }
 
     // Update is called once per frame
@@ -75,7 +61,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// タッチされたかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>真(押された)偽(押されてない)</returns>
     protected bool Collision()
     {
         ////タッチ情報取得

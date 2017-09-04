@@ -2,78 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ドロップをレーンごとに管理するクラス
+/// </summary>
 public class DropRane : MonoBehaviour{
 
-	// Use this for initialization
-	void Start () {
 
-	}
-
-    void Update()
-    {
-
-        if (DropList[(int)DropNumber.FIRST].transform.position.y < TargetPosition.y/* - gameobject.transform.localScale.y*/)
-        {
-            // Destroy(gameobject);
-            //Destroy(this.gameObject);
-            Create();
-
-            Destroy(DropList[(int)DropNumber.FIRST]);
-            DropList.RemoveAt((int)DropNumber.FIRST);
-        }
-
-        //if (DropList[(int)DropNumber.SECOND].transform.position.y <= -4/* - gameobject.transform.localScale.y*/)
-        //{
-        //    // Destroy(gameobject);
-        //    //Destroy(this.gameObject);
-        //    Destroy(DropList[(int)DropNumber.FIRST]);
-        //    DropList.RemoveAt((int)DropNumber.FIRST);
-
-        //}
-
-    }
-
+    //ターゲットドロップの座標
     [SerializeField]
-        public Vector2 TargetPosition;
-        [SerializeField]
-        //ドロップの縦間隔
-        public Vector2 INTERVAL_SIZE;
+    public Vector2 TargetPosition;
+    //ドロップの縦間隔
+    [SerializeField]
+    public Vector2 INTERVAL_SIZE;
+    //列に入るドロップの最大値
+    [SerializeField]
+    public int MAX_DROP = 4;
 
-
-        //列に入るドロップの最大値
-        public int MAX_DROP = 4;
-
-
+    //移動プレハブ
+    [SerializeField]
     public GameObject MovePregab;
+
+    //各種ドロップのプレハブ
+    [SerializeField]
     public GameObject CircleDropPrefab;
+    [SerializeField]
     public GameObject CrossDropPrefab;
+    [SerializeField]
     public GameObject TryangleDropPrefab;
 
-
-
-
-    public GameObject Init(Drop.DROPTYPE droptype)
-    {
-        GameObject DropPrefab;
-        switch (droptype)
-        {
-            case Drop.DROPTYPE.Circle:
-                DropPrefab = Instantiate(CircleDropPrefab);
-                DropPrefab.GetComponent<Drop>()._DropType = droptype;
-                return DropPrefab;
-            case Drop.DROPTYPE.Cross:
-                DropPrefab = Instantiate(CrossDropPrefab);
-                DropPrefab.GetComponent<Drop>()._DropType = droptype;
-                return DropPrefab;
-            case Drop.DROPTYPE.Tryangle:
-                DropPrefab = Instantiate(TryangleDropPrefab);
-                DropPrefab.GetComponent<Drop>()._DropType = droptype;
-                return DropPrefab;
-            default:
-                return null;
-        }
-    }
-
+    //レーンに入ってるドロップリスト
+    List<GameObject> DropList = new List<GameObject>();
     //どのレーンか
     LANEKIND LaneKind;
 
@@ -100,23 +58,52 @@ public class DropRane : MonoBehaviour{
             {
                 inst = Create();
             }
+            //座標設定
             inst.transform.position = new Vector3(Pos.x, Pos.y, transform.position.z);
             Pos.y += INTERVAL_SIZE.y;
 
         }
     }
 
-    List<GameObject> DropList = new List<GameObject>();
-
     /// <summary>
-    /// 指定したドロップを生成
+    /// 指定されたドロップの種類に応じてプレハブ生成
     /// </summary>
     /// <param name="droptype">ドロップの種類</param>
-    /// <returns></returns>
+    /// <returns>ドロップのGameObject</returns>
+    public GameObject DropCreate(Drop.DROPTYPE droptype)
+    {
+        GameObject DropPrefab;
+        switch (droptype)
+        {
+            case Drop.DROPTYPE.Circle:
+                DropPrefab = Instantiate(CircleDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            case Drop.DROPTYPE.Cross:
+                DropPrefab = Instantiate(CrossDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            case Drop.DROPTYPE.Tryangle:
+                DropPrefab = Instantiate(TryangleDropPrefab);
+                DropPrefab.GetComponent<Drop>()._DropType = droptype;
+                return DropPrefab;
+            default:
+                return null;
+        }
+    }
+
+
+
+
+    /// <summary>
+    /// 指定したドロップを生成するメゾットを呼びだしリストに格納
+    /// </summary>
+    /// <param name="droptype">ドロップの種類</param>
+    /// <returns>ドロップのGameObject</returns>
     public GameObject Create(Drop.DROPTYPE droptype)
     {
         GameObject inst;
-        inst = Init(droptype);
+        inst = DropCreate(droptype);
         inst.transform.Translate(TargetPosition.x + (float)LaneKind * INTERVAL_SIZE.x, TargetPosition.y + INTERVAL_SIZE.y * (MAX_DROP - 1), transform.position.z);
         DropList.Add(inst);
         return inst;
@@ -124,13 +111,13 @@ public class DropRane : MonoBehaviour{
 
 
     /// <summary>
-    /// ドロップを生成
+    /// ランダムで指定したドロップを生成するメゾットを呼びだしリストに格納
     /// </summary>
-    /// <returns>ドロップ</returns>
+    /// <returns>ドロップのGameObject</returns>
     public GameObject Create()
     {
         GameObject inst;
-        inst = Init((Drop.DROPTYPE)Random.Range((float)Drop.DROPTYPE.Circle, (float)Drop.DROPTYPE.Tryangle + 1));
+        inst = DropCreate((Drop.DROPTYPE)Random.Range((float)Drop.DROPTYPE.Circle, (float)Drop.DROPTYPE.Tryangle + 1));
         inst.transform.Translate(TargetPosition.x + (float)LaneKind * INTERVAL_SIZE.x, TargetPosition.y + INTERVAL_SIZE.y  * (MAX_DROP), transform.position.z);
         DropList.Add(inst);
         return inst;
@@ -145,16 +132,10 @@ public class DropRane : MonoBehaviour{
 
             if (ButtlegameObject.GetComponent<FightManager>()._IsTouch == true)
             {
-            //Destroy(DropList[(int)DropNumber.FIRST]);
-            //DropList.RemoveAt((int)DropNumber.FIRST);
-
-            //削除されたら必ず移動＋作成
-
-            AllDropDown();
+                //削除さる前にい
+                AllDropDown();
               
             }
-   
-
     }
 
 
@@ -174,7 +155,6 @@ public class DropRane : MonoBehaviour{
     }
 
 
-    List<GameObject> Move = new List<GameObject>();
     /// <summary>
     /// 全てのドロップを一段落とす
     /// </summary>
@@ -182,10 +162,8 @@ public class DropRane : MonoBehaviour{
     {
         // int loopcnt = 0;
         bool MoveFlag = false;
-        if (DropList[(int)DropNumber.FIRST].transform.position.y == TargetPosition.y/* - gameobject.transform.localScale.y*/)
+        if (DropList[(int)DropNumber.FIRST].transform.position.y == TargetPosition.y)
         {
-            // Destroy(gameobject);
-            //Destroy(this.gameObject);
             Create();
 
             Destroy(DropList[(int)DropNumber.FIRST]);
@@ -210,10 +188,6 @@ public class DropRane : MonoBehaviour{
     }
 
 
-
-
-
-
     /// <summary>
     /// ターゲットドロップの種類プロパティ
     /// </summary>
@@ -222,15 +196,6 @@ public class DropRane : MonoBehaviour{
         get { return DropList[(int)DropNumber.FIRST].GetComponent<Drop>()._DropType; }
         set { DropList[(int)DropNumber.FIRST].GetComponent<Drop>()._DropType = value; }
     }
-
-    ///// <summary>
-    ///// ターゲットドロップの種類プロパティ
-    ///// </summary>
-    //public Drop.DROPTYPE _NextTargetDrop
-    //{
-    //    get { return DropList[(int)DropNumber.FOURTH].GetComponent<Drop>()._DropType; }
-    //    set { DropList[(int)DropNumber.FOURTH].GetComponent<Drop>()._DropType = value; }
-    //}
 
 
     //列の種類

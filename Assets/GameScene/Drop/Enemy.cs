@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour {
+/// <summary>
+/// 敵クラス
+/// </summary>
+public class Enemy : Character {
 
-	// Use this for initialization
-	void Start () {
+   
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

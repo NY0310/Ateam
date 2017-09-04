@@ -16,26 +16,6 @@ public class Move : MonoBehaviour {
     GameObject gameobject;
     //バトルマネージャのゲームオブジェクト
     GameObject ButtlegameObject;
-  //  bool Isupdate = true;
-
-    public GameObject _gameobject
-    {
-        get { return gameobject; }
-        set { gameobject = value; }
-    }
-
-    //public float _GoralPosY
-    //{
-    //    get { return GoralPos.y; }
-    //    set { GoralPos.y = value; }
-    //}
-
-
-    //public float _TotalTime
-    //{
-    //    get { return TotalTime; }
-    //    set { TotalTime = value; }
-    //}
 
 
     // Use this for initialization
@@ -47,6 +27,12 @@ public class Move : MonoBehaviour {
     }
 
     
+    /// <summary>
+    /// 指定された座標に移動
+    /// </summary>
+    /// <param name="gameobject">移動させるオブジェクト</param>
+    /// <param name="gorlpos">移動したい座標</param>
+    /// <param name="time">時間</param>
     public void MoveTo( GameObject gameobject, Vector3 gorlpos,float time)
     {
         this.gameobject = gameobject;
@@ -55,6 +41,12 @@ public class Move : MonoBehaviour {
         TotalTime = time;
     }
 
+    /// <summary>
+    /// 指定された座標分だけ移動
+    /// </summary>
+    /// <param name="gameobject">移動させるオブジェクト</param>
+    /// <param name="gorlpos">移動量</param>
+    /// <param name="time">時間</param>
     public void MoveBy(GameObject gameobject, Vector3 gorlpos, float time)
     {
 
@@ -81,12 +73,6 @@ public class Move : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-        //else if(Isupdate)
-        //{
-        //    GoralPos *= 4;
-        //    TotalTime *= 4;
-        //    Isupdate = false;
-        //}
 
         if (time > 1.0f)
             {
@@ -99,6 +85,13 @@ public class Move : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// 線形補間
+    /// </summary>
+    /// <param name="StartPosition">スタート座標</param>
+    /// <param name="GorlPosition">ゴール座標</param>
+    /// <param name="Time">時間</param>
+    /// <returns>算出座標</returns>
     Vector3 Lerp(Vector3 StartPosition, Vector3 GorlPosition , float Time)
     {
         return (1 - Time) * StartPosition + GorlPosition * Time;
